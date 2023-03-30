@@ -7,7 +7,7 @@ public class InputSystem : IEcsRunSystem
 
     private float _moveX;
     private float _moveY;
-    private bool _IsAttacking = false;
+    private bool _isAttacking = false;
     private float _attackTime = 0.5f;
     private float _time = 0f;
 
@@ -21,18 +21,18 @@ public class InputSystem : IEcsRunSystem
             ref var directionComponent = ref _actionsFilter.Get2(component);
             ref var attackComponent = ref _actionsFilter.Get3(component);
             ref var direction = ref directionComponent.Direction;
-            attackComponent.IsAttacking = _IsAttacking;
+            attackComponent.IsAttacking = _isAttacking;
             direction.x = _moveX;
             direction.y = _moveY;
         }
 
-        if (_IsAttacking == true)
+        if (_isAttacking == true)
         {
             _time += Time.deltaTime;
 
             if (_time > _attackTime)
             {
-                _IsAttacking = false;
+                _isAttacking = false;
                 _time = 0;
             }
         }
@@ -46,9 +46,9 @@ public class InputSystem : IEcsRunSystem
 
     private void ReadAttack()
     {
-        if (_IsAttacking == false && Input.GetMouseButton(0))
+        if (_isAttacking == false && Input.GetMouseButton(0))
         {
-            _IsAttacking = true;
+            _isAttacking = true;
         }
     }
 }

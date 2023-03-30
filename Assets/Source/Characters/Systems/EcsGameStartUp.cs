@@ -37,6 +37,7 @@ public sealed class EcsGameStartUp : MonoBehaviour
         _systems.
             Add(new InputSystem()).
             Add(new MovementSystem()).
-            Add(new AnimationSystem());
+            Add(new AnimationSystem()).
+            Add(new FollowSystem());
     }
 }
