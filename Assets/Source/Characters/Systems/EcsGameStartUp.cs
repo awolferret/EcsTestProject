@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 using UnityEngine;
-
+using Voody.UniLeo;
 
 public sealed class EcsGameStartUp : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public sealed class EcsGameStartUp : MonoBehaviour
     {
         _world = new EcsWorld();
         _systems = new EcsSystems(_world);
+        _systems.ConvertScene();
+        AddSystems();
         _systems.Init();
     }
 
@@ -28,5 +30,13 @@ public sealed class EcsGameStartUp : MonoBehaviour
         _systems = null;
         _world.Destroy();
         _world = null;
+    }
+
+    private void AddSystems()
+    {
+        _systems.
+            Add(new InputSystem()).
+            Add(new MovementSystem()).
+            Add(new AnimationSystem());
     }
 }
